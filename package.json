@@ -1,6 +1,6 @@
 {
   "name": "nokey-tinypng-webpack-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "repository": {
     "type": "git",
@@ -8,7 +8,7 @@
   },
   "main": "dist/nokey-tinypng-webpack-plugin.js",
   "scripts": {
-    "build": "babel src -o dist/nokey-tinypng-webpack-plugin.js "
+    "build": "babel src --out-dir dist --presets=env"
   },
   "author": "",
   "license": "ISC",

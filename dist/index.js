@@ -1,9 +1,20 @@
+'use strict';
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _bluebirdRetry = require('bluebird-retry');
+
+var _bluebirdRetry2 = _interopRequireDefault(_bluebirdRetry);
+
+var _webpackSources = require('webpack-sources');
+
+var _webpackSources2 = _interopRequireDefault(_webpackSources);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-import axios from 'axios';
-import retry from 'bluebird-retry';
-
-import webpackSources from 'webpack-sources';
 
 function TinyPlugin(options) {
   this.options = options || {
@@ -18,7 +29,7 @@ TinyPlugin.prototype.getUrl = function (url) {
   var _this = this;
   function promiseFactory() {
     return new Promise(function (resolve, reject) {
-      axios({
+      (0, _axios2.default)({
         url: url,
         timeout: _this.options.MAX_TIME,
         method: 'get',
@@ -36,7 +47,7 @@ TinyPlugin.prototype.postUrl = function (data) {
   var _this = this;
   function promiseFactory() {
     return new Promise(function (resolve, reject) {
-      axios({ method: 'post',
+      (0, _axios2.default)({ method: 'post',
         headers: {
           "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
           "Accept-Encoding": "gzip, deflate",
@@ -71,18 +82,18 @@ TinyPlugin.prototype.tiny = function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return retry(this.postUrl.bind(this, assets[filename].source()), { max_tries: this.options.MAX_TRY });
+            return (0, _bluebirdRetry2.default)(this.postUrl.bind(this, assets[filename].source()), { max_tries: this.options.MAX_TRY });
 
           case 3:
             url = _context.sent;
             _context.next = 6;
-            return retry(this.getUrl.bind(this, url), { max_tries: this.options.MAX_TRY });
+            return (0, _bluebirdRetry2.default)(this.getUrl.bind(this, url), { max_tries: this.options.MAX_TRY });
 
           case 6:
             rawData = _context.sent;
 
             console.log(filename, '=> success');
-            assets[filename] = new webpackSources.RawSource(rawData);
+            assets[filename] = new _webpackSources2.default.RawSource(rawData);
             return _context.abrupt('return', Promise.resolve());
 
           case 12:
