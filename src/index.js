@@ -1,7 +1,7 @@
 import axios from 'axios'
 import retry from 'bluebird-retry'
 
-const webpackSources = require('webpack-sources')
+import webpackSources from 'webpack-sources'
 
 
 function TinyPlugin(options) {
