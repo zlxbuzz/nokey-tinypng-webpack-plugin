@@ -26,3 +26,4 @@ dist/debug
 .babelrc
 .editorconfig
 npm-debug.log
+*.log
