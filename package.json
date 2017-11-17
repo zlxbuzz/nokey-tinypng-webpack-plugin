@@ -1,7 +1,11 @@
 {
   "name": "nokey-tinypng-webpack-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
+  "repository":{
+    "type" : "git",
+    "url"  : "https://github.com/zlxbuzz/nokey-tinypng-webpack-plugin"
+  },
   "main": "dist/nokey-tinypng-webpack-plugin.js",
   "scripts": {
     "build": "webpack"
